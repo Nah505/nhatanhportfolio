@@ -204,9 +204,21 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--bg2)}
   .feat-in,.reflect,.card{padding:24px}
 }
 @media print{
-  .bg-fx,.grid-tex,.noise,.scroll-hint,header.nav,.hero-cta{display:none}
-  body{background:#fff;color:#111}
-  .reveal{opacity:1;transform:none}
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  html{scroll-padding-top:0}
+  body{background:var(--bg) !important;color:var(--ink) !important}
+  .grid-tex,.noise,.scroll-hint,header.nav,.hero-cta,.menu-btn{display:none !important}
+  .bg-fx{position:absolute !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  /* hero: no full-page gap, all text visible */
+  .hero{min-height:auto !important;padding-top:30px !important;padding-bottom:20px !important}
+  .hero .kicker,.hero h1 .l1,.hero h1 .l2,.hero .tag,.id-row{opacity:1 !important;animation:none !important}
+  .hero h1 .l2{background:none !important;-webkit-text-fill-color:var(--teal) !important;color:var(--teal) !important}
+  section{padding-top:36px !important;padding-bottom:18px !important}
+  footer{margin-top:36px !important}
+  /* avoid awkward splits */
+  .proj,.featured,.card,.reflect,.sum-card,.feat-stats .stat{break-inside:avoid;page-break-inside:avoid}
+  .proj .shot img,.shot img{max-height:320px;width:auto;max-width:100%}
 }
 </style>
 </head>
