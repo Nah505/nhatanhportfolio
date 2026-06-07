@@ -204,21 +204,34 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--bg2)}
   .feat-in,.reflect,.card{padding:24px}
 }
 @media print{
-  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  /* Convert to a clean LIGHT layout so text is always visible even without
+     the browser's "Background graphics" option enabled (white page + dark ink). */
+  :root{
+    --bg:#ffffff; --bg2:#ffffff; --surface:#ffffff; --surface2:#f3f4f7;
+    --ink:#15171f; --soft:#363b4c; --muted:#565c70; --faint:#7c8296;
+    --line:#d8dbe3; --line2:#c2c6d1;
+    --teal:#0d9488; --teal-d:#0d9488;
+    --amber:#b45309; --violet:#6d28d9; --green:#15803d; --pink:#a21caf; --coral:#be123c; --sky:#0369a1;
+  }
   html{scroll-padding-top:0}
-  body{background:var(--bg) !important;color:var(--ink) !important}
-  .grid-tex,.noise,.scroll-hint,header.nav,.hero-cta,.menu-btn{display:none !important}
-  .bg-fx{position:absolute !important}
+  body{background:#fff !important;color:var(--ink) !important}
+  .bg-fx,.grid-tex,.noise,.scroll-hint,header.nav,.hero-cta,.menu-btn,.proj .accent{display:none !important}
   .reveal{opacity:1 !important;transform:none !important}
-  /* hero: no full-page gap, all text visible */
-  .hero{min-height:auto !important;padding-top:30px !important;padding-bottom:20px !important}
+  /* panels: borders only, no background fills (fills need the print toggle) */
+  .card,.featured,.proj,.reflect,.sum-card,.eval,.stat,.takeaways .ta,.tbl-wrap{
+    background:#fff !important;border:1px solid var(--line) !important}
+  .eval .eh,th{background:#f3f4f7 !important}
+  /* hero: compact, all text visible, gradient title -> solid */
+  .hero{min-height:auto !important;padding-top:24px !important;padding-bottom:16px !important}
   .hero .kicker,.hero h1 .l1,.hero h1 .l2,.hero .tag,.id-row{opacity:1 !important;animation:none !important}
+  .hero h1 .l1{color:var(--ink) !important}
   .hero h1 .l2{background:none !important;-webkit-text-fill-color:var(--teal) !important;color:var(--teal) !important}
-  section{padding-top:36px !important;padding-bottom:18px !important}
-  footer{margin-top:36px !important}
-  /* avoid awkward splits */
-  .proj,.featured,.card,.reflect,.sum-card,.feat-stats .stat{break-inside:avoid;page-break-inside:avoid}
-  .proj .shot img,.shot img{max-height:320px;width:auto;max-width:100%}
+  /* badge that used white-on-color -> outline style so it stays visible */
+  .feat-tag{background:#fff !important;color:var(--teal) !important;border:1px solid var(--teal) !important}
+  section{padding-top:30px !important;padding-bottom:14px !important}
+  footer{margin-top:30px !important;background:#fff !important}
+  .proj,.featured,.card,.reflect,.sum-card,.feat-stats .stat,.eval{break-inside:avoid;page-break-inside:avoid}
+  .proj .shot img,.shot img{max-height:300px;width:auto;max-width:100%;border:1px solid var(--line)}
 }
 </style>
 </head>
